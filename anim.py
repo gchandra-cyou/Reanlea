@@ -451,4 +451,41 @@ class ArrowEx(Scene):
             Create(grp),
             run_time=4
         )
+
+
+from manim import*
+class ArrowEXl(Scene):
+    def construct(self):
+
+        lgrp=VGroup()
+        for buf in np.arange(0,2.2,.45):
+            lgrp += Arrow(buff=buf, start=2*LEFT,end=2*RIGHT)
+            lgrp.arrange(DOWN)
+            lgrp.move_to(4*LEFT)
+
+        mgrp=VGroup()
+        for i in np.arange(0,5,.5):
+            mgrp+=Arrow(max_stroke_width_to_length_ratio=i)
+            mgrp.arrange(DOWN)
+
+        URgrp=VGroup()
+        for i in np.arange(0,.3,.1):
+            URgrp+=Arrow(max_tip_length_to_length_ratio=i)
+            URgrp.arrange(DOWN)
+            URgrp.move_to(4*RIGHT+2*UP)
+
+        DRgrp=VGroup()
+        DRgrp+=Arrow(start=LEFT,end=RIGHT,color=BLUE,tip_shape=ArrowSquareTip)
+        DRgrp+=Arrow(start=LEFT,end=RIGHT,color=BLUE,tip_shape=ArrowSquareFilledTip)
+        DRgrp+=Arrow(start=LEFT,end=RIGHT,color=RED,tip_shape=ArrowCircleTip)
+        DRgrp+=Arrow(start=LEFT,end=RIGHT,color=RED,tip_shape=ArrowCircleFilledTip)
+        DRgrp.arrange(DOWN)
+        DRgrp.move_to(4*RIGHT+2*DOWN)
+
+        grp=VGroup(lgrp,mgrp,URgrp,DRgrp)
+
+        self.play(
+            Create(grp),
+            run_time=6
+        )
         self.wait()
