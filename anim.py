@@ -426,3 +426,29 @@ class GetValueEx(Scene):
         )
         self.wait()
 
+from manim import*
+from manim.mobject.geometry.tips import ArrowSquareTip
+
+class ArrowEx(Scene):
+    def construct(self):
+
+        arrow1=Arrow(start=RIGHT,end=LEFT,color=GOLD)
+        arrow2=Arrow(start=RIGHT,end=LEFT,color=GOLD,tip_shape=ArrowSquareTip).shift(DOWN)
+        g1=VGroup(arrow1,arrow2)
+
+        arrow3=Arrow(start=LEFT,end=RIGHT)
+        arrow4=Arrow(start=RIGHT,end=LEFT,buff=.7).next_to(arrow3,UP)
+        sq=Square(color=MAROON_C)
+        g2=VGroup(arrow3,arrow4,sq)
+
+        arrow5=Arrow(start=ORIGIN,end=config.top).shift(2*LEFT)
+        arrow6=Arrow(start=config.top+DOWN,end=config.top).shift(LEFT)
+        g3=VGroup(arrow5,arrow6)
+
+        grp=VGroup(g1,g2,g3).arrange(buff=2)
+
+        self.play(
+            Create(grp),
+            run_time=4
+        )
+        self.wait()
