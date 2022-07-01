@@ -494,15 +494,58 @@ class ArrowEXl(Scene):
 
 from manim import*
 from manim_fonts import*
-class ArrowTest(Scene):
+class ArrowTest0(Scene):
     def construct(self):
-        with RegisterFont("The Nautigal") as fonts:
-            tex=Text("Hello World",font=fonts[0])
         arrow=Arrow(np.array([-1,-1,0]),np.array([1,1,0])).set_color_by_gradient(RED,BLUE)
-        grp=VGroup(arrow,tex)
+        with RegisterFont("Comfortaa") as fonts:
+            tex=Text("REANLEA.com",font=fonts[0]).next_to(arrow,DOWN)
+        grp=VGroup(arrow,tex)    
         self.play(
             Create(grp),
             run_time=3
         ) 
         self.wait()   
 
+
+from manim import*
+from manim_fonts import*
+class GradientTest(Scene):
+    def construct(self):
+        #dots
+        dots = VGroup(*[Dot(radius=0.15) for i in range(20)])
+        dots.arrange(RIGHT)
+        dots.set_color_by_gradient(PINK, BLUE, YELLOW)
+
+        #text
+
+        with RegisterFont("Comfortaa") as fontz:
+            a=Text("de ARTh.studio", font=fontz[1])
+            a.set_color_by_gradient(YELLOW,GREEN,BLUE,RED)
+
+        with RegisterFont("Tiro Bangla") as fonts:
+            text = Text("শুভ রথযাত্রা",font=fonts[0])
+            text.set_color_by_gradient(RED,BLUE,YELLOW)
+            text.next_to(dots, UP)
+
+        
+
+        #play
+        self.add_sound("piano.mp3")
+        self.play(
+            FadeIn(dots),
+            Write(text),
+            run_time=2,
+        )
+        self.wait(2)
+
+        self.play(
+            Transform(text,a),
+            FadeOut(dots),
+            run_time=2
+        )
+        self.wait(2)
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        
+
+
+from manim import*
