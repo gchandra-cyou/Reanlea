@@ -1,3 +1,4 @@
+from tkinter import font
 from manim import *
  
 class CircleFromPointsEx(Scene):
@@ -489,3 +490,19 @@ class ArrowEXl(Scene):
             run_time=6
         )
         self.wait()
+
+
+from manim import*
+from manim_fonts import*
+class ArrowTest(Scene):
+    def construct(self):
+        with RegisterFont("The Nautigal") as fonts:
+            tex=Text("Hello World",font=fonts[0])
+        arrow=Arrow(np.array([-1,-1,0]),np.array([1,1,0])).set_color_by_gradient(RED,BLUE)
+        grp=VGroup(arrow,tex)
+        self.play(
+            Create(grp),
+            run_time=3
+        ) 
+        self.wait()   
+
