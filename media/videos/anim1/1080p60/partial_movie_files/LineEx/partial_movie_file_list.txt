@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/LineEx/450974505_3060012198_223132457.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/LineEx/34786186_535162829_2636545975.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/LineEx/34786186_641011677_1631355806.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/LineEx/34786186_617707920_1779920659.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/LineEx/34786186_641011677_1971207101.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/LineEx/34786186_3520937828_84397529.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/LineEx/34786186_641011677_640870413.mp4'

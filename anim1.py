@@ -1,4 +1,3 @@
-import grp
 from tkinter import font
 from manim import *
 from numpy import array
@@ -642,4 +641,153 @@ class DoubleArrowEx2(Scene):
             Create(grp)
         )
         self.wait()    
-         
+
+
+from manim import*
+
+class DashedLineEx(Scene):
+    def construct(self):
+        d0=DashedLine(config.left_side,config.right_side,dashed_ratio=0.2)
+        d0.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        d1=DashedLine(config.left_side,config.right_side,dash_length=1.0)
+        d1.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        d2=DashedLine(config.left_side,config.right_side)
+        d2.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        d3=DashedLine(config.left_side,config.right_side,dashed_ratio=0.2)
+        d3.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+
+        grp=VGroup(d0,d1,d2,d3).arrange(DOWN)
+
+        self.play(
+            Create(grp),
+            run_time=3
+        )
+        self.wait()
+
+
+from manim import*
+
+class ElbowEx(Scene):
+    def construct(self):
+        el1=Elbow()
+        el2=Elbow(width=2.0)
+        el3=Elbow(width=2.0,angle=5*PI/4)
+        grp=VGroup(el1,el2,el3).arrange(buff=1)
+        self.play(
+            Create(grp)
+        )
+        self.wait()
+
+from manim import*
+
+class LineEx(Scene):
+    def construct(self):
+        d=VGroup()
+        for i in range(0,10):
+            d.add(Dot())
+        d.arrange_in_grid(buff=1)
+        d.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        self.play(
+            Create(d)
+        )       
+        l=Line(d[0],d[1])
+        l.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        self.play(
+            Create(l)
+        )
+        self.wait()
+        l.put_start_and_end_on(d[1].get_center(),d[2].get_center())
+        l.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        self.play(
+            Create(l)
+        )
+        self.wait()
+        l.put_start_and_end_on(d[2].get_center(),d[8].get_center())
+        l.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        self.play(
+            Create(l)
+        )
+        self.wait()
+
+
+from manim import*    
+
+class RightAngleEx(Scene):
+    def construct(self):
+        line1=Line(LEFT,RIGHT)
+        line2=Line(DOWN,UP)
+        x=[
+            RightAngle(line1,line2),
+            RightAngle(line1,line2,quadrant=(-1,1),color=RED),
+            RightAngle(line1,line2,quadrant=(-1,-1),stroke_width=8,length=0.5),
+            RightAngle(line1,line2,quadrant=(1,-1),color=YELLOW,length=0.7)
+        ]
+        plots=VGroup()
+        for y in x:
+            plot=VGroup(line1.copy(),line2.copy(),y)
+            plots.add(plot)
+        plots.arrange(buff=1)
+        self.play(
+            Create(plots),
+            run_time=5
+        )    
+        self.wait()
+
+
+from manim import*
+class TangentLineEx(Scene):
+    def construct(self):
+        circle=Circle()
+        l1=TangentLine(circle,alpha=0,length=4,color=BLUE_D)
+        l2=TangentLine(circle,alpha=0.25,length=4,color=GREEN)
+        l3=TangentLine(circle,alpha=0.5,length=4,color=RED)
+        l4=TangentLine(circle,alpha=0.75,length=4,color=YELLOW)
+        l5=TangentLine
+        self.play(
+            Create(circle)
+        )
+        self.play(
+            Create(l1)
+        )
+        self.play(
+            Create(l2)
+        )
+        self.play(
+            Create(l3)
+        )
+        self.play(
+            Create(l4)
+        )
+        self.wait()
+
+
+from manim import*
+class TangentLineEx2(Scene):
+    def construct(self):
+        circle=Circle(radius=2)
+        grp=VGroup()
+        for i in np.arange(0,1,0.15):
+            grp+=TangentLine(circle,alpha=i,length=2.25,color=GREEN_C)
+        grpc=VGroup(circle,grp)
+        self.play(
+            Create(grpc),
+            run_time=5
+        )  
+        self.wait()  
+
+from manim import*
+class VectorEx(Scene):
+    def construct(self):
+        plane=NumberPlane()
+
+        v1=Vector([1,2])
+        v2=Vector([-3,-2])
+        vl1=v1.coordinate_label()
+        vl2=v2.coordinate_label(color=BLUE)
+
+        grp=VGroup(plane,v1,v2,vl1,vl2)
+        self.play(
+            Create(grp),
+            run_time=7
+        )
+        self.wait()

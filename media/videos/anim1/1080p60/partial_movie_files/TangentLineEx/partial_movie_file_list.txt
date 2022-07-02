@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/TangentLineEx/450974505_2036994782_223132457.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/TangentLineEx/34786186_2615152155_2894038964.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/TangentLineEx/34786186_122832460_3946446633.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/TangentLineEx/34786186_1139312973_653870542.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/TangentLineEx/34786186_1689403670_2040913158.mp4'
+file 'file:C:/Users/gchan/OneDrive/Desktop/project/media/videos/anim1/1080p60/partial_movie_files/TangentLineEx/34786186_641011677_343904263.mp4'
