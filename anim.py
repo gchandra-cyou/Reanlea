@@ -1,5 +1,7 @@
+import grp
 from tkinter import font
 from manim import *
+from numpy import array
  
 class CircleFromPointsEx(Scene):
     def construct(self):
@@ -549,3 +551,110 @@ class GradientTest(Scene):
 
 
 from manim import*
+class ArrowTest(Scene):
+    def construct(self):
+        a=[-1,-1,0]
+        b=[1,1,0]
+        arrow=Arrow(start=a,end=b,buff=1)
+        arrow2=VMobject.scale(arrow,2)
+        self.play(
+            Create(arrow2)
+        )
+        self.play( 
+            Rotate(arrow2,PI/4)
+        )    
+
+from manim import*
+class ArrowTest1(Scene):
+    def construct(self):
+        a=[-1,-1,0]
+        b=[1,1,0]
+        arrow=Arrow(start=a,end=b,buff=1)
+        arrow0=Arrow(start=a,end=b,buff=1)
+        arrow01=arrow0.scale(1)            #arrow tip length is equal to scaled arrow tip length
+        arrow1=Arrow(start=a,end=b,buff=1)
+        arrow11=arrow1.scale(2)            #arrow tip length is equal to scaled arrow tip length
+        arrow2=Arrow(start=a,end=b,buff=1)
+        arrow21=VMobject.scale(arrow2,2)   #arrow tip length is not equal to scaled arrow tip length
+
+        grp=VGroup(arrow,arrow0,arrow01,arrow1,arrow11,arrow2,arrow21).arrange(buff=1)
+
+        self.play(
+            Create(grp),
+            run_time=5
+        )
+        self.wait()      
+
+
+from manim import*
+class DashedLineEx(Scene):
+    def construct(self):
+        dl1=DashedLine(config.left_side,config.right_side,dash_length=2.0).shift(UP*2)
+        dl1.set_color_by_gradient(RED,BLUE,GREEN,YELLOW)
+        dl2=DashedLine(config.left_side,config.right_side)  
+        dl2.set_color_by_gradient(GREEN,MAROON,BLUE,RED)        
+        dl3=DashedLine(config.left_side,config.right_side,dashed_ratio=0.1).shift(2*DOWN)
+        dl3.set_color_by_gradient(BLUE_D,RED_D,GREEN_D,GOLD_C)
+
+        grp=VGroup(dl1,dl2,dl3)
+        self.play(
+            Create(dl1,run_time=2)
+        )
+        self.play(
+            Create(dl2,run_time=4),
+        )
+        self.play(
+            Create(dl3,run_time=3)
+        )
+        self.wait()
+
+
+from manim import*
+from manim.mobject.geometry.tips import ArrowCircleFilledTip
+class DoubleArrowEx(Scene):
+    def construct(self):
+        circle=Circle(radius=2.0)
+        darrow1=DoubleArrow(start=circle.get_left(),end=circle.get_right())
+        darrow2=DoubleArrow(tip_shape_end=ArrowCircleFilledTip,tip_shape_start=ArrowCircleFilledTip)
+        grp=VGroup(VGroup(circle,darrow1),darrow2).arrange(UP,buff=1)
+
+        self.play(
+            Create(grp),
+            run_time=5
+        )
+        self.wait()
+
+
+from manim import*
+class DoubleArrowEx2(Scene):
+    def construct(self):
+        box=Square()
+        p1=box.get_left()
+        p2=box.get_right()
+        d1=DoubleArrow(p1,p2,buff=0)   
+        d2=DoubleArrow(p1,p2,buff=0,tip_length=0.2,color=YELLOW)
+        d3=DoubleArrow(p1,p2,buff=0,tip_length=0.4,color=BLUE)    
+        grp=VGroup(d1,d2,d3).arrange(DOWN)
+        self.play(
+            Create(box)
+        )
+        self.play(
+            Create(grp)
+        )
+        self.wait()
+
+
+from manim import*
+
+class DashedLineEx(Scene):
+    def construct(self):
+        d1=DashedLine(config.left_side,config.right_side,dash_length=2.0)
+        d1.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        d2=DashedLine(config.left_side,config.right_side)
+        d2.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+        d3=DashedLine(config.left_side,config.right_side,dashed_ratio=0.2)
+        d3.set_color_by_gradient(RED,BLUE,GREEN,MAROON,GOLD)
+
+        self.play(
+            Create(d1)
+        )
