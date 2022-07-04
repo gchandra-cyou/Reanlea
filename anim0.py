@@ -1,3 +1,4 @@
+import itertools as it
 from tkinter import font
 from turtle import bgcolor
 from manim import *
@@ -1052,4 +1053,66 @@ class GraphAutoPosition(Scene):
     def construct(self):
         vertices=[1,2,3,4,5,6,7,8]
         edges=[(1,2),(1,8),(1,7),(2,6),(2,5),(2,4),(3,6),(3,8),(4,5),(4,7),(5,8)] 
-        auto=["spring","circular","planar","random","shell","spectral","spiral",]       
+        auto=["spring","circular","planar","random","shell","spectral","spiral","kamada_kawai"]     
+        g=[Graph(vertices,edges,layout=x).scale(.5)
+        for x in auto]
+        r1=VGroup(*g[:3]).arrange() 
+        r2=VGroup(*g[3:6]).arrange()  
+        r3=VGroup(*g[6:]).arrange() 
+        grp=VGroup(r1,r2,r3).arrange(DOWN)
+        self.play(
+            Create(grp),
+            run_time=6
+        )
+        self.wait()
+
+
+#vertices can also be positioned manually 
+
+from manim import*
+class GraphManEx(Scene):
+    def construct(self):
+        vertices=[1,2,3,4]
+        edges=[(1,2),(2,3),(3,4),(4,1)]
+        lt={1:[0,0,0],2:[1,1,0],3:[1,-2,0],4:[-1,0,0]} 
+        g=Graph(vertices,edges,layout=lt)
+        self.play(
+            Create(g),
+            run_time=3
+        )      
+        self.wait()
+        self.play(
+            g[1].animate.move_to([2,3,0]),
+            g[2].animate.move_to([4,-3,0]),
+            g[3].animate.move_to([1,3.5,0]),
+            g[4].animate.move_to([3,-3.5,0]),
+        )
+        self.wait()
+
+
+
+####TEST 3D#######
+from manim import *
+
+class ParaSurface(ThreeDScene):
+    def func(self, u, v):
+        return np.array([np.cos(u),np.cos(v) + np.sin(u), np.sin(v)])
+
+    def construct(self):
+        axes = ThreeDAxes(x_range=[-4,4], x_length=8)
+        surface = Surface(
+            lambda u, v: axes.c2p(*self.func(u, v)),
+            u_range=[-PI, PI],
+            v_range=[0, TAU]
+        )
+
+        self.set_camera_orientation(theta=30 * DEGREES, phi=75 * DEGREES)
+        self.play(
+            Create(axes),
+            run_time=3
+        )    
+        self.play(
+            Create(surface),
+            run_time=3
+        )  
+        self.wait()
