@@ -1,4 +1,5 @@
 from tkinter import font
+from turtle import bgcolor
 from manim import *
 from numpy import array
  
@@ -791,3 +792,264 @@ class VectorEx(Scene):
             run_time=7
         )
         self.wait()
+
+
+#Cutout Example
+
+from manim import*
+class CutoutEx(Scene):
+    def construct(self):
+        s1=Square().scale(2.5)
+        #s2=Triangle().shift(DOWN+RIGHT).scale(.5)
+        #s4=Square().shift(LEFT+DOWN).scale(.5)
+        #s8=RegularPolygon(5).shift(UP+LEFT).scale(0.5)
+        s3=RegularPolygon(6).shift(UP + LEFT).scale(0.5)
+        #s5=RegularPolygon(6).shift(LEFT+DOWN).scale(.5)
+        s6=RegularPolygon(3).shift(DOWN+LEFT).scale(0.5)
+        #s7=RegularPolygon(7)
+        c=Cutout(s1,s6,s3,fill_opacity=1,color=
+        BLUE,stroke_color=RED)
+        self.play(
+            Write(c),
+            run_time=6
+        )        
+        self.wait()
+
+
+from manim import *
+
+class PolygonEx(Scene):
+    def construct(self):
+       x=Polygon([-5,1.5,0],[-2,1.5,0],[-3.5,-2,0])
+       position=[
+        [4,1,0],
+        [5,2,0],
+        [-3,4,0],
+        [7,1,0],
+        [-5,9,0],
+        [2,-4,0]
+       ]   
+       y=Polygon(*position,color=PURPLE)
+       tex=Tex("REANLEA.com").next_to(y,RIGHT).scale(2)
+       grp=VGroup(x,y,tex)
+       grp=grp.scale(.2).shift(2.4*DOWN,3.4*LEFT)
+       self.play(
+        Create(y),
+        run_time=3
+       )
+       self.wait()
+       self.play(
+        Rotate(y,-PI/2)
+       )
+       self.play(
+        Create(tex)
+       )
+       self.wait(2)
+       self.play(*[FadeOut(mob) for mob in self.mobjects])
+
+
+from manim import*
+import numpy as np
+class PolygramEx(Scene):
+    def construct(self):
+        hexa=Polygram(
+            [[0,2,0],[-np.sqrt(3),-1,0],[np.sqrt(3),-1,0]],
+            [[-np.sqrt(3),1,0],[0,-2,0],[np.sqrt(3),1,0]],
+        ).set_color(PURPLE)      
+        dot=Dot(color=PURE_GREEN)
+        tex=Tex("REANLEA.com").set_color(PURE_GREEN)
+        grp=VGroup(hexa,tex).arrange(DOWN)
+        hexa2=hexa.copy().round_corners(radius=0.25) #Rounds off the corners of the Polygram.
+
+        self.wait()
+        self.play(
+            Create(hexa,run_time=3),
+            Create(tex,run_time=3)
+        )
+        self.play(
+            Transform(hexa,hexa2),
+            run_time=2.5
+        )
+        self.play(
+            MoveAlongPath(dot,hexa2),run_time=5,rate_func=linear
+        )
+        self.wait()
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.wait()
+
+
+from manim import*
+class RectEx(Scene):
+    def construct(self):
+        rect1=Rectangle(width=4.0,height=2.0,grid_xstep=1.0,grid_ystep=0.5).set_color_by_gradient(BLUE,PURE_RED,PURE_GREEN,PURE_BLUE)
+        rect2=Rectangle(width=1.0,height=4.0)
+        grp=VGroup(rect1,rect2).arrange(buff=1)
+        self.play(
+            Create(grp),
+            run_time=3
+        )        
+        self.wait()
+
+
+from manim import*
+class RegularPolygonEx(Scene):
+    def construct(self):
+        p1=RegularPolygon(n=6)
+        p2=RegularPolygon(n=6,start_angle=30*DEGREES,color=PURE_GREEN)
+        p3=RegularPolygon(n=10,color=PURE_RED)  
+        grp=VGroup(p1,p2,p3).arrange(buff=1)
+        self.play(
+            Create(grp),
+            run_time=3
+        )      
+        self.wait()
+
+
+from manim import*
+class RegularPolygramEx(Scene):
+    def construct(self):
+        p1=RegularPolygram(3,radius=1,color=PURE_GREEN)
+        p2=RegularPolygram(4,radius=1,color=PURE_GREEN)
+        p3=RegularPolygram(5,radius=1,color=PURE_GREEN)
+        p4=RegularPolygram(6,radius=1,color=PURE_GREEN)
+        p5=RegularPolygram(7,radius=1,color=PURE_GREEN)
+        p6=RegularPolygram(8,radius=1,color=PURE_GREEN)
+        p7=RegularPolygram(9,radius=1,color=PURE_GREEN)
+        p8=RegularPolygram(10,radius=1,color=PURE_GREEN)
+        p9=RegularPolygram(11,radius=1,color=PURE_GREEN)
+        p10=RegularPolygram(12,radius=1,color=PURE_GREEN)
+        p11=RegularPolygram(13,radius=1,color=PURE_GREEN)
+        p12=RegularPolygram(14,radius=1,color=PURE_GREEN)
+        p13=RegularPolygram(15,radius=1,color=PURE_GREEN)
+        p14=RegularPolygram(16,radius=1,color=PURE_GREEN)
+        p15=RegularPolygram(17,radius=1,color=PURE_GREEN)
+        grp1=VGroup(p1,p2,p3,p4,p5).arrange(buff=1)
+        grp2=VGroup(p6,p7,p8,p9,p10).arrange(buff=1)
+        grp3=VGroup(p11,p12,p13,p14,p15).arrange(buff=1)
+        grp=VGroup(grp1,grp2,grp3).arrange(DOWN)
+        self.play(
+            Create(grp),
+            run_time=6
+        )        
+        self.wait()
+
+
+from manim import*
+class xy(Scene):
+    def construct(self):
+        p5=RegularPolygram(5, radius=2,color=PURE_GREEN)
+        p6=RegularPolygram(6,radius=2,color=PURE_GREEN)
+        p5c=p5.copy().round_corners(radius=0.25)
+        p6c=p6.copy().round_corners(radius=0.25)  
+        grp=VGroup(p5,p6).arrange(buff=1)
+        grp1=VGroup(p5c,p6c).arrange(buff=3)
+        self.play(
+            Create(grp),
+            run_time=2
+        )
+        self.play(
+            Transform(grp,grp1)
+        )     
+        self.wait()
+
+
+from manim import*
+class StarEx(Scene):
+    def construct(self):
+        p=RegularPolygram(5,radius=1.5,color=PURE_GREEN)
+        s=Star(5,outer_radius=1.5,color=PURPLE)
+        s1=Star(7,outer_radius=1.5,density=2,color=PURE_RED)
+        s2=Star(7,outer_radius=1.5,density=3,color=PURE_BLUE)
+        grp1=VGroup(p,s)
+        grp2=VGroup(s1,s2).arrange(buff=1)
+        grp=VGroup(grp1,grp2).arrange(buff=1)
+        
+        self.play(
+            Create(grp),
+            run_time=6
+        )    
+        self.wait()    
+
+
+
+#Shape Matchers (manim.mobject.geometry.shape\_matchers)
+
+from manim import*
+class BackgroundRectangleEx(Scene):
+    def construct(self):
+        circle=Circle().shift(LEFT)
+        triangle=Triangle().shift(2*RIGHT)
+        circle.set_stroke(color=GREEN,width=20)
+        triangle.set_fill(PURPLE,opacity=0.5)
+        b1=BackgroundRectangle(circle,color=WHITE,fill_opacity=.5)
+        b2=BackgroundRectangle(triangle,color=WHITE,fill_opacity=0.5)
+        grp=VGroup(circle,triangle,b1,b2)
+        self.play(
+            Create(grp)
+        )
+        self.play(
+            Rotate(b1,PI/2)
+        )
+        self.play(
+            Rotate(b2,PI/2)
+        )
+        self.wait()
+
+
+from manim import*
+class CrossEx(Scene):
+    def construct(self):
+        cross=Cross().set_color(PURE_RED)
+        self.play(
+            Create(cross),
+            run_time=2
+        )
+        self.wait()
+
+
+from manim import*
+class UnderlineEx(Scene):
+    def construct(self):
+        man=Tex("Gobinda Chandra").set_color(PURPLE)
+        ul=Underline(man).set_color(PURE_GREEN)
+        grp=VGroup(man,ul)
+        self.play(
+            Create(grp),
+            run_time=2
+        )       
+        self.wait() 
+
+
+from manim import*
+class Grapg1Ex(Scene):
+    def construct(self):
+        vertices=[1,2,3,4]
+        edges=[(1,2),(2,3),(3,4),(1,3),(1,4)]
+        g=Graph(vertices,edges, vertex_config={"fill_color":PURE_RED},
+        edge_config={
+            (1,2):{"stroke_color":PURE_GREEN},
+            (2,3):{"stroke_color":PURPLE_B},
+            (3,4):{"stroke_color":PURE_BLUE},
+            (1,3):{"stroke_color":BLUE_C},
+            (1,4):{"stroke_color":YELLOW},
+        })  
+        self.play(
+            Create(g),
+            run_time=2
+        )   
+        self.wait()
+        self.play(
+            g[1].animate.move_to([1,1,0]),
+            g[2].animate.move_to([-1,1,0]),
+            g[3].animate.move_to([1,-1,0]),
+            g[4].animate.move_to([-1,-1,0]),
+        )
+        self.wait()
+
+
+from manim import*
+class GraphAutoPosition(Scene):
+    def construct(self):
+        vertices=[1,2,3,4,5,6,7,8]
+        edges=[(1,2),(1,8),(1,7),(2,6),(2,5),(2,4),(3,6),(3,8),(4,5),(4,7),(5,8)] 
+        auto=["spring","circular","planar","random","shell","spectral","spiral",]       
